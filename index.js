@@ -4,10 +4,8 @@ $(document).ready(function(){
   $('#gaugeDemo .gauge-arrow').cmGauge();
 });
 
-
+// Stores Sensor Data (Train Samples) & Displays it
 function fetchSensorData() {
-
-  // dataset
   $("#div_container_linegraph").show();
   let timestamps = [  1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,  13,
         14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,  26,
@@ -290,12 +288,9 @@ else if(engineid == 'Engine 4'){
          let graph_plot1 = document.getElementById('div_linegraph_data');
          Plotly.newPlot( graph_plot1, [{ x: timestamps, y: values, name: "Sensor Data" }], { margin: { t: 0 } } );
     }
-
-
-
-
 }
 
+// Stores Sensor Data (Test Samples) & Displays it
 function getTestData() {
   // dataset
   $("#div_container_linegraphtest").show();
@@ -950,30 +945,16 @@ function getTestData() {
 
 }
 
-function reset() {
 
-
-  $("#div_container_linegraphtest").hide();
-  $("#div_container_predbutton").hide();
-  //$("#div_container_testbutton").hide();
-//  $("#div_container_prob").hide();
-
-    $("#div_container_testbutton").show();
-    $("#div_container_prob").hide();
-    $("#btn_predict").show();
-
-
-}
-
+/* Simple Display of probabity failure obtained from model.
+   Hard coded values obtained from running the model in Colab.
+   TFJS not possible due to large ML model.
+   Future work - Create this using as a backend.
+*/
 function predictFailure() {
-
   $('.loader').css('display','none');
   $("#div_container_prob").show();
   $("#btn_predict").hide();
-
-
-
-  // document.getElementById('status').innerHTML = 'Model Loaded';
 
   testdata = document.getElementById("testdata").value;
   if(testdata == 'Sample 3') {
@@ -1497,4 +1478,16 @@ else if(testdata == 'Sample 2'){
 }
  $('#gaugeDemo .gauge-arrow').trigger('updateGauge', probab);
  document.getElementById("prob").innerHTML = probab + "%";
+}
+
+// Reset function for better visualization
+function reset() {
+  $("#div_container_linegraphtest").hide();
+  $("#div_container_predbutton").hide();
+  //$("#div_container_testbutton").hide();
+//  $("#div_container_prob").hide();
+
+    $("#div_container_testbutton").show();
+    $("#div_container_prob").hide();
+    $("#btn_predict").show();
 }
