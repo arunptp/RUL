@@ -1,6 +1,6 @@
 # Asset Health Management
 
-An interactive demo @ https://arun-thomas.xyz/rul/.
+An interactive demo @ https://arun-thomas.in/rul/.
 
 <div align="justify">
   
